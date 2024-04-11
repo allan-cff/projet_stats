@@ -57,52 +57,52 @@ print(matrice)
 
 
 #   --------------- Analyse des données récupérés ---------------  #
-D44_RR = c()
-D29_RR = c()
-D61_RR = c()
-D33_RR = c()
-D13_RR = c()
-D69_RR = c()
-D75_RR = c()
-D59_RR = c()
-D37_RR = c()
-D67_RR = c()
+D44_Abs = c()
+D29_Abs = c()
+D61_Abs = c()
+D33_Abs = c()
+D13_Abs = c()
+D69_Abs = c()
+D75_Abs = c()
+D59_Abs = c()
+D37_Abs = c()
+D67_Abs = c()
 
 
 for(i in 0:10){
-  D44_RR = c(D44_RR, matrice[1,i])
+  D44_Abs = c(D44_Abs, matrice[1,i])
 }
 for(i in 0:10){
-  D29_RR = c(D29_RR, matrice[2,i])
+  D29_Abs = c(D29_Abs, matrice[2,i])
 }
 for(i in 0:10){
-  D61_RR = c(D61_RR, matrice[3,i])
+  D61_Abs = c(D61_Abs, matrice[3,i])
 }
 for(i in 0:10){
-  D33_RR = c(D33_RR, matrice[4,i])
+  D33_Abs = c(D33_Abs, matrice[4,i])
 }
 for(i in 0:10){
-  D13_RR = c(D13_RR, matrice[5,i])
+  D13_Abs = c(D13_Abs, matrice[5,i])
 }
 for(i in 0:10){
-  D69_RR = c(D69_RR, matrice[6,i])
+  D69_Abs = c(D69_Abs, matrice[6,i])
 }
 for(i in 0:10){
-  D75_RR = c(D75_RR, matrice[7,i])
+  D75_Abs = c(D75_Abs, matrice[7,i])
 }
 for(i in 0:10){
-  D59_RR = c(D59_RR, matrice[8,i])
+  D59_Abs = c(D59_Abs, matrice[8,i])
 }
 for(i in 0:10){
-  D37_RR = c(D37_RR, matrice[9,i])
+  D37_Abs = c(D37_Abs, matrice[9,i])
 }
 for(i in 0:10){
-  D67_RR = c(D67_RR, matrice[10,i])
+  D67_Abs = c(D67_Abs, matrice[10,i])
 }
 
 
 #   --------------- Moyenne, équart type et variance pour chaque département ---------------  #
 
-Moy_RR <- c(mean(D44_RR), mean(D29_RR), mean(D61_RR), mean(D33_RR), mean(D13_RR), mean(D69_RR), mean(D75_RR), mean(D59_RR), mean(D37_RR), mean(D67_RR))
-SD_RR <- c(sd(D44_RR), sd(D29_RR), sd(D61_RR), sd(D33_RR), sd(D13_RR), sd(D69_RR), sd(D75_RR), sd(D59_RR), sd(D37_RR), sd(D67_RR))
-VAR_RR <- c(var(D44_RR), var(D29_RR), var(D61_RR), var(D33_RR), var(D13_RR), var(D69_RR), var(D75_RR), var(D59_RR), var(D37_RR), var(D67_RR))
+Moy_RR <- c(mean(D44_Abs), mean(D29_Abs), mean(D61_Abs), mean(D33_Abs), mean(D13_Abs), mean(D69_Abs), mean(D75_Abs), mean(D59_Abs), mean(D37_Abs), mean(D67_Abs))
+SD_RR <- c(sd(D44_Abs), sd(D29_Abs), sd(D61_Abs), sd(D33_Abs), sd(D13_Abs), sd(D69_Abs), sd(D75_Abs), sd(D59_Abs), sd(D37_Abs), sd(D67_Abs))
+VAR_RR <- c(var(D44_Abs), var(D29_Abs), var(D61_Abs), var(D33_Abs), var(D13_Abs), var(D69_Abs), var(D75_Abs), var(D59_Abs), var(D37_Abs), var(D67_Abs))
