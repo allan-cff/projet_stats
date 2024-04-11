@@ -39,13 +39,15 @@ matrice <- matrix(nrow = length(departement), ncol = length(departement))
 
 #   --------------- Récupération des données météorologiques pour les départements et jours voulus  ---------------  #
 
-for (i in seq_along(departement)) {
+i=1
+for (dep in departement) {
   h=1
   for(j in jour){
-    tmp <-    #récupère l'abstention pour un département
+    tmp <- election_data[[h]] %>% filter(code_dep == dep) %>% summarize(taux_abstention = Abstentions/Inscrits)  #récupère l'abstention pour un département
     matrice[i, h] <- round(tmp[[1]], 2)     #remplissage matrice avec la valeur voulue
     h=h+1         #iteration moche
   }
+  i=i+1
 }
 
 
