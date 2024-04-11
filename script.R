@@ -2,10 +2,12 @@ library(tidyverse)
 source("functions.R")
 
 
+
 #   --------------- Initialisation des valeures, départements analysés et date des élections ---------------  #
 
 departement <- c(44, 29, 61, 33, 13, 69, 75, 59, 37, 67) #departments
 jour <- c("20020421", "20020505", "20070422", "20070506", "20120422", "20120506", "20170421", "20170507", "20220410", "20220424") # date election
+
 
 
 #   --------------- variables globales  ---------------  #
@@ -24,6 +26,7 @@ D37_RR = c()
 D67_RR = c()
 
 
+
 #   --------------- Récupération des données météorologiques pour les départements et jours voulus  ---------------  #
 
 for (i in seq_along(departement)) {
@@ -39,6 +42,7 @@ for (i in seq_along(departement)) {
     h=h+1         #iteration moche
   }
   
+
 }
 
 
@@ -83,6 +87,7 @@ for(i in 0:10){
 for(i in 0:10){
   D67_RR = c(D67_RR, matrice[10,i])
 }
+
 
 Parram_Stat <-function(X,Y){
   tmp <- sqrt( (1 - Corr_Lin(X,Y)^2) / (length(X)-2) )
