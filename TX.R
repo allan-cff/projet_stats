@@ -45,9 +45,9 @@ for (i in seq_along(departement)) {
 
 #   --------------- Mise en forme matrice : ligne : départements ||  colone : date d'élection ---------------  #
 
-colnames(matrice) <- c("[2002-1]", "[2002-2]", "[2007-1]", "[2007-2]", "[2012-1]", "[2012-2]", "[2017-1]", "[2017-2]", "[2022-1]", "[2022-2]")  # Noms des colonnes
-rownames(matrice) <- c("[44]", "[29]", "[61]","[33]", "[13]", "[69]","[75]","[59]", "[37]", "[67]")  # Noms des lignes
-print(matrice)
+colnames(mat_tmp) <- c("[2002-1]", "[2002-2]", "[2007-1]", "[2007-2]", "[2012-1]", "[2012-2]", "[2017-1]", "[2017-2]", "[2022-1]", "[2022-2]")  # Noms des colonnes
+rownames(mat_tmp) <- c("[44]", "[29]", "[61]","[33]", "[13]", "[69]","[75]","[59]", "[37]", "[67]")  # Noms des lignes
+print(mat_tmp)
 
 
 #   --------------- Analyse des données récupérés ---------------  #
@@ -93,9 +93,3 @@ Moy_TX <- c(mean(D44_TX), mean(D29_TX), mean(D61_TX), mean(D33_TX), mean(D13_TX)
 SD_TX <- c(sd(D44_TX), sd(D29_TX), sd(D61_TX), sd(D33_TX), sd(D13_TX), sd(D69_TX), sd(D75_TX), sd(D59_TX), sd(D37_TX), sd(D67_TX))
 VAR_TX <- c(var(D44_TX), var(D29_TX), var(D61_TX), var(D33_TX), var(D13_TX), var(D69_TX), var(D75_TX), var(D59_TX), var(D37_TX), var(D67_TX))
 
-print("Moyenne par département :")
-print(Moy_TX)
-print("équart type par département : ")
-print(SD_TX)
-print("variance par département", VAR_TX)
-print(VAR_TX)

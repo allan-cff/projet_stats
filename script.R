@@ -12,7 +12,7 @@ jour <- c("20020421", "20020505", "20070422", "20070506", "20120422", "20120506"
 
 #   --------------- variables globales  ---------------  #
 
-matrice <- matrix(nrow = length(jour), ncol = length(departement))
+matriceRR <- matrix(nrow = length(jour), ncol = length(departement))
 
 D44_RR = c()
 D29_RR = c()
@@ -37,8 +37,8 @@ for (i in seq_along(departement)) {
   
   h=1
   for(j in jour){
-    tmp <- dat %>% filter(AAAAMMJJ == j) %>% select(TX) %>% drop_na() %>% summarize(across(everything(), mean))   #récupère la moyenne pour un jour
-    matrice[i, h] <- round(tmp[[1]], 2)     #remplissage matrice avec la valeur voulue
+    tmp <- dat %>% filter(AAAAMMJJ == j) %>% select(RR) %>% drop_na() %>% summarize(across(everything(), mean))   #récupère la moyenne pour un jour
+    matriceRR[i, h] <- round(tmp[[1]], 2)     #remplissage matrice avec la valeur voulue
     h=h+1         #iteration moche
   }
   
@@ -48,9 +48,9 @@ for (i in seq_along(departement)) {
 
 #   --------------- Mise en forme matrice : ligne : départements / colone : date d'élection ---------------  #
 
-colnames(matrice) <- c("[2002-1]", "[2002-2]", "[2007-1]", "[2007-2]", "[2012-1]", "[2012-2]", "[2017-1]", "[2017-2]", "[2022-1]", "[2022-2]")  # Noms des colonnes
-rownames(matrice) <- c("[44]", "[29]", "[61]","[33]", "[13]", "[69]","[75]","[59]", "[37]", "[67]")  # Noms des lignes
-print(matrice)
+colnames(matriceRR) <- c("[2002-1]", "[2002-2]", "[2007-1]", "[2007-2]", "[2012-1]", "[2012-2]", "[2017-1]", "[2017-2]", "[2022-1]", "[2022-2]")  # Noms des colonnes
+rownames(matriceRR) <- c("[44]", "[29]", "[61]","[33]", "[13]", "[69]","[75]","[59]", "[37]", "[67]")  # Noms des lignes
+print(matriceRR)
 
 
 #   --------------- Analyse des données récupérés ---------------  #
@@ -58,34 +58,34 @@ print(matrice)
 
 
 for(i in 0:10){
-  D44_RR = c(D44_RR, matrice[1,i])
+  D44_RR = c(D44_RR, matriceRR[1,i])
 }
 for(i in 0:10){
-  D29_RR = c(D29_RR, matrice[2,i])
+  D29_RR = c(D29_RR, matriceRR[2,i])
 }
 for(i in 0:10){
-  D61_RR = c(D61_RR, matrice[3,i])
+  D61_RR = c(D61_RR, matriceRR[3,i])
 }
 for(i in 0:10){
-  D33_RR = c(D33_RR, matrice[4,i])
+  D33_RR = c(D33_RR, matriceRR[4,i])
 }
 for(i in 0:10){
-  D13_RR = c(D13_RR, matrice[5,i])
+  D13_RR = c(D13_RR, matriceRR[5,i])
 }
 for(i in 0:10){
-  D69_RR = c(D69_RR, matrice[6,i])
+  D69_RR = c(D69_RR, matriceRR[6,i])
 }
 for(i in 0:10){
-  D75_RR = c(D75_RR, matrice[7,i])
+  D75_RR = c(D75_RR, matriceRR[7,i])
 }
 for(i in 0:10){
-  D59_RR = c(D59_RR, matrice[8,i])
+  D59_RR = c(D59_RR, matriceRR[8,i])
 }
 for(i in 0:10){
-  D37_RR = c(D37_RR, matrice[9,i])
+  D37_RR = c(D37_RR, matriceRR[9,i])
 }
 for(i in 0:10){
-  D67_RR = c(D67_RR, matrice[10,i])
+  D67_RR = c(D67_RR, matriceRR[10,i])
 }
 
 
@@ -102,7 +102,48 @@ SD_RR <- c(sd(D44_RR), sd(D29_RR), sd(D61_RR), sd(D33_RR), sd(D13_RR), sd(D69_RR
 VAR_RR <- c(var(D44_RR), var(D29_RR), var(D61_RR), var(D33_RR), var(D13_RR), var(D69_RR), var(D75_RR), var(D59_RR), var(D37_RR), var(D67_RR))
 
 
-#   --------------- Exploitation des données pluie et temp ---------------  #
-source("functions.R")
+#   --------------- Exploitation des données pluie et abstention ---------------  #
 
-print(Corr_Lin(D44_RR, D44_Abs))
+source("functions.R")
+r_RR = c(Corr_Lin(D44_RR, D44_Abs), Corr_Lin(D29_RR, D29_Abs), Corr_Lin(D61_RR, D61_Abs), Corr_Lin(D33_RR, D33_Abs), Corr_Lin(D13_RR, D13_Abs), Corr_Lin(D69_RR, D69_Abs), Corr_Lin(D75_RR, D75_Abs), Corr_Lin(D59_RR, D59_Abs), Corr_Lin(D37_RR, D37_Abs), Corr_Lin(D67_RR, D67_Abs))
+print(r_RR)
+
+t_RR = c(Parram_Stat(D44_RR, D44_Abs), Parram_Stat(D29_RR, D29_Abs), Parram_Stat(D61_RR, D61_Abs), Parram_Stat(D33_RR, D33_Abs), Parram_Stat(D13_RR, D13_Abs), Parram_Stat(D69_RR, D69_Abs), Parram_Stat(D75_RR, D75_Abs), Parram_Stat(D59_RR, D59_Abs), Parram_Stat(D37_RR, D37_Abs), Parram_Stat(D67_RR, D67_Abs))
+print(t_RR)
+
+
+#   --------------- Exploitation des données tempérture et abstention ---------------  #
+
+source("functions.R")
+r_TX <- c(Corr_Lin(D44_TX, D44_Abs), Corr_Lin(D29_TX, D29_Abs), Corr_Lin(D61_TX, D61_Abs), Corr_Lin(D33_TX, D33_Abs), Corr_Lin(D13_TX, D13_Abs), Corr_Lin(D69_TX, D69_Abs), Corr_Lin(D75_TX, D75_Abs), Corr_Lin(D59_TX, D59_Abs), Corr_Lin(D37_TX, D37_Abs), Corr_Lin(D67_TX, D67_Abs))
+print(r_TX)
+
+t_TX <- c(Parram_Stat(D44_TX, D44_Abs), Parram_Stat(D29_TX, D29_Abs), Parram_Stat(D61_TX, D61_Abs), Parram_Stat(D33_TX, D33_Abs), Parram_Stat(D13_TX, D13_Abs), Parram_Stat(D69_TX, D69_Abs), Parram_Stat(D75_TX, D75_Abs), Parram_Stat(D59_TX, D59_Abs), Parram_Stat(D37_TX, D37_Abs), Parram_Stat(D67_TX, D67_Abs))
+print(t_TX)
+
+
+#   --------------- Affichages plots ---------------  #
+
+plot(D44_RR, D44_Abs*100, pch = 0, col="#000000", xlab = "Pluie (mm)", ylab = "Abstention (%)")     # Plot abstention en fonction de pluie
+points(D29_RR, D29_Abs*100, pch = 1, col="#4B0082")
+points(D61_RR, D61_Abs*100, pch = 2, col="#666666")
+points(D33_RR, D33_Abs*100, pch = 3, col="#8B4513")
+points(D13_RR, D13_Abs*100, pch = 4, col="#00008B")
+points(D69_RR, D69_Abs*100, pch = 5, col="#006400")
+points(D75_RR, D75_Abs*100, pch = 6, col="#8B0000")
+points(D59_RR, D59_Abs*100, pch = 7, col="#8B4513")
+points(D37_RR, D37_Abs*100, pch = 8, col="#8A2BE2")
+points(D67_RR, D67_Abs*100, pch = 9, col="#8B8B00")
+
+
+plot(D44_TX, D44_Abs*100, pch = 0, col="#000000", xlab = "T°Max (°C)", ylab = "Abstention (%)")     # Plot abstention en fonction de T° max
+points(D29_TX, D29_Abs*100, pch = 1, col="#4B0082")
+points(D61_TX, D61_Abs*100, pch = 2, col="#666666")
+points(D33_TX, D33_Abs*100, pch = 3, col="#8B4513")
+points(D13_TX, D13_Abs*100, pch = 4, col="#00008B")
+points(D69_TX, D69_Abs*100, pch = 5, col="#006400")
+points(D75_TX, D75_Abs*100, pch = 6, col="#8B0000")
+points(D59_TX, D59_Abs*100, pch = 7, col="#8B4513")
+points(D37_TX, D37_Abs*100, pch = 8, col="#8A2BE2")
+points(D67_TX, D67_Abs*100, pch = 9, col="#8B8B00")
+
