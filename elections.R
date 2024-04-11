@@ -1,6 +1,6 @@
 library(tidyverse)
 
-dataURL2002 <- "https://www.data.gouv.fr/fr/datasets/r/17fbaf03-33f2-48d6-95e8-aaa13809e432"
+dataURL2002 <- "data/PR02_Bvot_T1T2.txt"
 dataURL2007 <- "data/PR07_Bvot_T1T2.txt"
 dataURL2012 <- "data/PR12_Bvot_T1T2.txt"
 dataURL2017t1 <- "data/Presidentielle_2017_Resultats_Tour_1_c.csv"
@@ -9,7 +9,7 @@ dataURL2022t1 <- "data/resultats-par-niveau-dpt-t1-france-entiere.csv"
 dataURL2022t2 <- "data/resultats-par-niveau-dpt-t2-france-entiere.csv"
 
 # On supprime les lignes de 0 à 16 et on remplace le header car le ministère de l'intérieur ne sait pas écrire de CSV
-data2002 <- read.csv(textConnection(c("N_tour;code_dep;code_comm;nom_comm;N_bureau;Inscrits;Votants;Exprimes;N_cand;nom_cand;pren_cand;code_cand;voix_cand", readLines(url(dataURL2002))[-(0:17)])), sep=";") %>% filter(N_cand == 5)
+data2002 <- read.csv(textConnection(c("N_tour;code_dep;code_comm;nom_comm;N_bureau;Inscrits;Votants;Exprimes;N_cand;nom_cand;pren_cand;code_cand;voix_cand", readLines(dataURL2002)[-(0:17)])), sep=";") %>% filter(N_cand == 5)
 data2007 <- read.csv(textConnection(c("N_tour;code_dep;code_comm;nom_comm;N_bureau;Inscrits;Votants;Exprimes;N_cand;nom_cand;pren_cand;code_cand;voix_cand", readLines(dataURL2007)[-(0:17)])), sep=";") %>% filter(N_cand == 12)
 data2012 <- read.csv(textConnection(c("N_tour;code_dep;code_comm;nom_comm;JSP;IDK;N_bureau;Inscrits;Votants;Exprimes;N_cand;nom_cand;pren_cand;code_cand;voix_cand", readLines(dataURL2012))), sep=";") %>% filter(N_cand == 11)
 
