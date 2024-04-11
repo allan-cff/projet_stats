@@ -34,25 +34,25 @@ jour <- c("20020421", "20020505", "20070422", "20070506", "20120422", "20120506"
 
 #   --------------- variables globales ---------------  #
 
-matrice <- matrix(nrow = length(departement), ncol = length(departement))
+matrice_Abs <- matrix(nrow = length(departement), ncol = length(departement))
 
 
 #   --------------- Récupération des données d'abstention pour les départements et jours voulus  ---------------  #
 
 
 for (dep in seq_along(departement)) {
-  for(j in jour){
-    tmp <- election_data[[j]] %>% filter(code_dep == department[dep]) %>% summarize(taux_abstention = Abstentions/Inscrits)  #récupère l'abstention pour un département
-    matrice[dep, j] <- round(tmp[[1]], 2)     #remplissage matrice avec la valeur voulue
+  for(j in seq_along(jour)){
+    tmp <- election_data[[j]] %>% filter(code_dep == departement[dep]) %>% summarize(taux_abstention = Abstentions/Inscrits)  #récupère l'abstention pour un département
+    matrice_Abs[dep, j] <- round(tmp[[1]], 2)     #remplissage matrice avec la valeur voulue
   }
 }
 
 
 #   --------------- Mise en forme matrice : ligne : départements / colonne : date du scrutin ---------------  #
 
-colnames(matrice) <- c("[2002-1]", "[2002-2]", "[2007-1]", "[2007-2]", "[2012-1]", "[2012-2]", "[2017-1]", "[2017-2]", "[2022-1]", "[2022-2]")  # Noms des colonnes
-rownames(matrice) <- c("[44]", "[29]", "[61]","[33]", "[13]", "[69]","[75]","[59]", "[37]", "[67]")  # Noms des lignes
-print(matrice)
+colnames(matrice_Abs) <- c("[2002-1]", "[2002-2]", "[2007-1]", "[2007-2]", "[2012-1]", "[2012-2]", "[2017-1]", "[2017-2]", "[2022-1]", "[2022-2]")  # Noms des colonnes
+rownames(matrice_Abs) <- c("[44]", "[29]", "[61]","[33]", "[13]", "[69]","[75]","[59]", "[37]", "[67]")  # Noms des lignes
+print(matrice_Abs)
 
 
 #   --------------- Analyse des données récupérées ---------------  #
@@ -69,34 +69,34 @@ D67_Abs = c()
 
 
 for(i in 0:10){
-  D44_Abs = c(D44_Abs, matrice[1,i])
+  D44_Abs = c(D44_Abs, matrice_Abs[1,i])
 }
 for(i in 0:10){
-  D29_Abs = c(D29_Abs, matrice[2,i])
+  D29_Abs = c(D29_Abs, matrice_Abs[2,i])
 }
 for(i in 0:10){
-  D61_Abs = c(D61_Abs, matrice[3,i])
+  D61_Abs = c(D61_Abs, matrice_Abs[3,i])
 }
 for(i in 0:10){
-  D33_Abs = c(D33_Abs, matrice[4,i])
+  D33_Abs = c(D33_Abs, matrice_Abs[4,i])
 }
 for(i in 0:10){
-  D13_Abs = c(D13_Abs, matrice[5,i])
+  D13_Abs = c(D13_Abs, matrice_Abs[5,i])
 }
 for(i in 0:10){
-  D69_Abs = c(D69_Abs, matrice[6,i])
+  D69_Abs = c(D69_Abs, matrice_Abs[6,i])
 }
 for(i in 0:10){
-  D75_Abs = c(D75_Abs, matrice[7,i])
+  D75_Abs = c(D75_Abs, matrice_Abs[7,i])
 }
 for(i in 0:10){
-  D59_Abs = c(D59_Abs, matrice[8,i])
+  D59_Abs = c(D59_Abs, matrice_Abs[8,i])
 }
 for(i in 0:10){
-  D37_Abs = c(D37_Abs, matrice[9,i])
+  D37_Abs = c(D37_Abs, matrice_Abs[9,i])
 }
 for(i in 0:10){
-  D67_Abs = c(D67_Abs, matrice[10,i])
+  D67_Abs = c(D67_Abs, matrice_Abs[10,i])
 }
 
 

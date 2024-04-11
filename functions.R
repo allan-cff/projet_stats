@@ -2,7 +2,7 @@
 
 # ----------------- Fonction calcul coefficient de correlation ----------------- #
 
-Parram_StatCorr_Lin <-function(X, Y){
+Corr_Lin <-function(X, Y){
   CV <- cov(X, Y)
   sdX <-sd(X)
   sdY <-sd(Y)
