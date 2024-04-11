@@ -128,6 +128,16 @@ t_TX <- c(Parram_Stat(D44_TX, D44_Abs), Parram_Stat(D29_TX, D29_Abs), Parram_Sta
 print(t_TX)
 
 
+source("functions.R")
+isRejected = c()
+for(i in 1:10){
+  isRejected = c(isRejected, testT(t_TX[i], 1.860))
+}
+
+print(isRejected)
+
+print(t_TX)
+
 #   --------------- Affichages plots ---------------  #
 
 plot(D44_RR, D44_Abs*100, pch = 0, col="#000000", xlab = "Pluie (mm)", ylab = "Abstention (%)")     # Plot abstention en fonction de pluie
