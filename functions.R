@@ -9,7 +9,7 @@ Corr_Lin <-function(X, Y){
   r <- CV/(sdX*sdY)
   return(r)
 }
-a <- 2
+
 
 # ----------------- Fonction calcul coefficient de corellation ----------------- #
 

@@ -1,5 +1,5 @@
 library(tidyverse)
-source("functions.R")
+
 
 
 
@@ -100,3 +100,9 @@ print(Parram_Stat(D44_RR, D44_TX))
 Moy_RR <- c(mean(D44_RR), mean(D29_RR), mean(D61_RR), mean(D33_RR), mean(D13_RR), mean(D69_RR), mean(D75_RR), mean(D59_RR), mean(D37_RR), mean(D67_RR))
 SD_RR <- c(sd(D44_RR), sd(D29_RR), sd(D61_RR), sd(D33_RR), sd(D13_RR), sd(D69_RR), sd(D75_RR), sd(D59_RR), sd(D37_RR), sd(D67_RR))
 VAR_RR <- c(var(D44_RR), var(D29_RR), var(D61_RR), var(D33_RR), var(D13_RR), var(D69_RR), var(D75_RR), var(D59_RR), var(D37_RR), var(D67_RR))
+
+
+#   --------------- Exploitation des données pluie et temp ---------------  #
+source("functions.R")
+
+print(Corr_Lin(D44_RR, D44_Abs))
