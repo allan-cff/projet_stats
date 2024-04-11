@@ -39,13 +39,15 @@ matrice <- matrix(nrow = length(departement), ncol = length(departement))
 
 #   --------------- Récupération des données météorologiques pour les départements et jours voulus  ---------------  #
 
-for (i in seq_along(departement)) {
+i=1
+for (dep in departement) {
   h=1
   for(j in jour){
-    tmp <-    #récupère l'abstention pour un département
+    tmp <- election_data[[h]] %>% filter(code_dep == dep) %>% summarize(taux_abstention = Abstentions/Inscrits)  #récupère l'abstention pour un département
     matrice[i, h] <- round(tmp[[1]], 2)     #remplissage matrice avec la valeur voulue
     h=h+1         #iteration moche
   }
+  i=i+1
 }
 
 
@@ -103,6 +105,6 @@ for(i in 0:10){
 
 #   --------------- Moyenne, équart type et variance pour chaque département ---------------  #
 
-Moy_RR <- c(mean(D44_Abs), mean(D29_Abs), mean(D61_Abs), mean(D33_Abs), mean(D13_Abs), mean(D69_Abs), mean(D75_Abs), mean(D59_Abs), mean(D37_Abs), mean(D67_Abs))
-SD_RR <- c(sd(D44_Abs), sd(D29_Abs), sd(D61_Abs), sd(D33_Abs), sd(D13_Abs), sd(D69_Abs), sd(D75_Abs), sd(D59_Abs), sd(D37_Abs), sd(D67_Abs))
-VAR_RR <- c(var(D44_Abs), var(D29_Abs), var(D61_Abs), var(D33_Abs), var(D13_Abs), var(D69_Abs), var(D75_Abs), var(D59_Abs), var(D37_Abs), var(D67_Abs))
+Moy_Abs <- c(mean(D44_Abs), mean(D29_Abs), mean(D61_Abs), mean(D33_Abs), mean(D13_Abs), mean(D69_Abs), mean(D75_Abs), mean(D59_Abs), mean(D37_Abs), mean(D67_Abs))
+SD_Abs <- c(sd(D44_Abs), sd(D29_Abs), sd(D61_Abs), sd(D33_Abs), sd(D13_Abs), sd(D69_Abs), sd(D75_Abs), sd(D59_Abs), sd(D37_Abs), sd(D67_Abs))
+VAR_Abs <- c(var(D44_Abs), var(D29_Abs), var(D61_Abs), var(D33_Abs), var(D13_Abs), var(D69_Abs), var(D75_Abs), var(D59_Abs), var(D37_Abs), var(D67_Abs))
