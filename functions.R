@@ -1,8 +1,8 @@
 
 
-# ----------------- Fonction calcul coefficient de corellation ----------------- #
+# ----------------- Fonction calcul coefficient de correlation ----------------- #
 
-Parram_StatCorr_Lin <-function(X, Y){
+Corr_Lin <-function(X, Y){
   CV <- cov(X, Y)
   sdX <-sd(X)
   sdY <-sd(Y)
@@ -11,7 +11,7 @@ Parram_StatCorr_Lin <-function(X, Y){
 }
 
 
-# ----------------- Fonction calcul coefficient de corellation ----------------- #
+# ----------------- Fonction calcul paramètre statistique ----------------- #
 
 Parram_Stat <-function(X,Y){
   tmp <- sqrt( (1 - Corr_Lin(X,Y)^2) / (length(X)-2) )
