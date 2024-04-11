@@ -3,7 +3,7 @@ library(tidyverse)
 
 
 
-#   --------------- Initialisation des valeures, départements analysés et date des élections ---------------  #
+#   --------------- Initialisation des valeurs, départements analysés et date des élections ---------------  #
 
 departement <- c(44, 29, 61, 33, 13, 69, 75, 59, 37, 67) #departments
 jour <- c("20020421", "20020505", "20070422", "20070506", "20120422", "20120506", "20170421", "20170507", "20220410", "20220424") # date election
@@ -35,18 +35,15 @@ for (i in seq_along(departement)) {
                                    "Q_", departement[i], "_previous-1950-2022_RR-T-Vent.csv.gz", sep="")))         # téléchargement fichier pluie pour un departement
   dat <- read.csv(textConnection(readLines(downloadedCSV)), sep=";")  # lecture du csv
   
-  h=1
-  for(j in jour){
-    tmp <- dat %>% filter(AAAAMMJJ == j) %>% select(RR) %>% drop_na() %>% summarize(across(everything(), mean))   #récupère la moyenne pour un jour
-    matriceRR[i, h] <- round(tmp[[1]], 2)     #remplissage matrice avec la valeur voulue
-    h=h+1         #iteration moche
+  for(j in seq_along(jour)){
+    tmp <- dat %>% filter(AAAAMMJJ == jour[j]) %>% select(TX) %>% drop_na() %>% summarize(across(everything(), mean))   #récupère la moyenne pour un jour
+    matrice[i, j] <- round(tmp[[1]], 2)     #remplissage matrice avec la valeur voulue
   }
   
-
 }
 
 
-#   --------------- Mise en forme matrice : ligne : départements / colone : date d'élection ---------------  #
+#   --------------- Mise en forme matrice : ligne : départements / colone : date du scrutin ---------------  #
 
 colnames(matriceRR) <- c("[2002-1]", "[2002-2]", "[2007-1]", "[2007-2]", "[2012-1]", "[2012-2]", "[2017-1]", "[2017-2]", "[2022-1]", "[2022-2]")  # Noms des colonnes
 rownames(matriceRR) <- c("[44]", "[29]", "[61]","[33]", "[13]", "[69]","[75]","[59]", "[37]", "[67]")  # Noms des lignes
@@ -95,7 +92,7 @@ Parram_Stat <-function(X,Y){
 }
 print(Parram_Stat(D44_RR, D44_TX))
 
-#   --------------- Moyenne, équart type et variance pour chaque départements ---------------  #
+#   --------------- Moyenne, équart type et variance pour chaque département ---------------  #
 
 Moy_RR <- c(mean(D44_RR), mean(D29_RR), mean(D61_RR), mean(D33_RR), mean(D13_RR), mean(D69_RR), mean(D75_RR), mean(D59_RR), mean(D37_RR), mean(D67_RR))
 SD_RR <- c(sd(D44_RR), sd(D29_RR), sd(D61_RR), sd(D33_RR), sd(D13_RR), sd(D69_RR), sd(D75_RR), sd(D59_RR), sd(D37_RR), sd(D67_RR))
@@ -112,7 +109,7 @@ t_RR = c(Parram_Stat(D44_RR, D44_Abs), Parram_Stat(D29_RR, D29_Abs), Parram_Stat
 print(t_RR)
 
 
-#   --------------- Exploitation des données tempérture et abstention ---------------  #
+#   --------------- Exploitation des données température et abstention ---------------  #
 
 source("functions.R")
 r_TX <- c(Corr_Lin(D44_TX, D44_Abs), Corr_Lin(D29_TX, D29_Abs), Corr_Lin(D61_TX, D61_Abs), Corr_Lin(D33_TX, D33_Abs), Corr_Lin(D13_TX, D13_Abs), Corr_Lin(D69_TX, D69_Abs), Corr_Lin(D75_TX, D75_Abs), Corr_Lin(D59_TX, D59_Abs), Corr_Lin(D37_TX, D37_Abs), Corr_Lin(D67_TX, D67_Abs))
