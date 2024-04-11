@@ -1,4 +1,5 @@
 library(tidyverse)
+source("functions.R")
 
 
 #   --------------- Initialisation des valeures, départements analysés et date des élections ---------------  #
@@ -7,23 +8,20 @@ departement <- c(44, 29, 61, 33, 13, 69, 75, 59, 37, 67) #departments
 jour <- c("20020421", "20020505", "20070422", "20070506", "20120422", "20120506", "20170421", "20170507", "20220410", "20220424") # date election
 
 
-#   --------------- variables globales et fonctions ---------------  #
+#   --------------- variables globales  ---------------  #
 
-matrice <- matrix(nrow = length(departement), ncol = length(departement))
+matrice <- matrix(nrow = length(jour), ncol = length(departement))
 
-
-Corr_Lin <-function(X, Y){
-  CV <- cov(X, Y)
-  sdX <-sd(X)
-  sdY <-sd(Y)
-  r <- CV/(sdX*sdY)
-  return(r)
-}
-
-Parram_Stat <-function(X,Y){
-  tmp <- sqrt( (1 - Corr_Lin(X,Y)^2) / (length(X)-2) )
-  return(abs(Corr_Lin(X,Y))/tmp)
-}
+D44_RR = c()
+D29_RR = c()
+D61_RR = c()
+D33_RR = c()
+D13_RR = c()
+D69_RR = c()
+D75_RR = c()
+D59_RR = c()
+D37_RR = c()
+D67_RR = c()
 
 
 #   --------------- Récupération des données météorologiques pour les départements et jours voulus  ---------------  #
@@ -41,8 +39,6 @@ for (i in seq_along(departement)) {
     h=h+1         #iteration moche
   }
   
-  
-  
 }
 
 
@@ -54,16 +50,7 @@ print(matrice)
 
 
 #   --------------- Analyse des données récupérés ---------------  #
-D44_RR = c()
-D29_RR = c()
-D61_RR = c()
-D33_RR = c()
-D13_RR = c()
-D69_RR = c()
-D75_RR = c()
-D59_RR = c()
-D37_RR = c()
-D67_RR = c()
+
 
 
 for(i in 0:10){

@@ -1,5 +1,5 @@
 library(tidyverse)
-
+source("functions.R")
 
 #   --------------- Initialisation des valeures, départements analysés et date des élections ---------------  #
 
@@ -9,7 +9,18 @@ jour <- c("20020421", "20020505", "20070422", "20070506", "20120422", "20120506"
 
 #   --------------- variables globales ---------------  #
 
-mat_tmp <- matrix(nrow = length(departement), ncol = length(departement))
+mat_tmp <- matrix(nrow = length(jour), ncol = length(departement))
+
+D44_TX = c()
+D29_TX = c()
+D61_TX = c()
+D33_TX = c()
+D13_TX = c()
+D69_TX = c()
+D75_TX = c()
+D59_TX = c()
+D37_TX = c()
+D67_TX = c()
 
 
 #   --------------- Récupération des données météorologiques pour les départements et jours voulus  ---------------  #
@@ -32,7 +43,7 @@ for (i in seq_along(departement)) {
 }
 
 
-#   --------------- Mise en forme matrice : ligne : départements / colone : date d'élection ---------------  #
+#   --------------- Mise en forme matrice : ligne : départements ||  colone : date d'élection ---------------  #
 
 colnames(matrice) <- c("[2002-1]", "[2002-2]", "[2007-1]", "[2007-2]", "[2012-1]", "[2012-2]", "[2017-1]", "[2017-2]", "[2022-1]", "[2022-2]")  # Noms des colonnes
 rownames(matrice) <- c("[44]", "[29]", "[61]","[33]", "[13]", "[69]","[75]","[59]", "[37]", "[67]")  # Noms des lignes
@@ -40,16 +51,8 @@ print(matrice)
 
 
 #   --------------- Analyse des données récupérés ---------------  #
-D44_TX = c()
-D29_TX = c()
-D61_TX = c()
-D33_TX = c()
-D13_TX = c()
-D69_TX = c()
-D75_TX = c()
-D59_TX = c()
-D37_TX = c()
-D67_TX = c()
+
+
 
 
 for(i in 0:10){
