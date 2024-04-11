@@ -11,7 +11,7 @@ for (i in seq_along(departement)) {
   dat <- read.csv(textConnection(readLines(downloadedCSV)), sep=";")  # lecture du csv
   
   h=1
-  for(j in jour){
+  for(j in jour){ 
     tmp <- dat %>% filter(AAAAMMJJ == j) %>% select(RR) %>% drop_na() %>% summarize(across(everything(), mean))   #récupère la moyenne pour un jour
     matrice[i, h] <- tmp[[1]]     #remplissage matrice avec la valeur voulue
     h=h+1         #iteration moche
