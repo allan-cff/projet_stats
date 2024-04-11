@@ -17,3 +17,14 @@ Parram_Stat <-function(X,Y){
   tmp <- sqrt( (1 - Corr_Lin(X,Y)^2) / (length(X)-2) )
   return(abs(Corr_Lin(X,Y))/tmp)
 }
+
+
+# ----------------- Fonction de comparaison t théorique et t obtenu ----------------- #
+
+testT <-function(t, t_th){
+  if(t<t_th){
+    return(0)
+  }else{
+    return(1)
+  }
+}
